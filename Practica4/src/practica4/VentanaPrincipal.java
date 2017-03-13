@@ -5,6 +5,8 @@
  */
 package practica4;
 
+import java.io.IOException;
+
 /**
  *
  * @author Adri
@@ -13,9 +15,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form Ventanapr
+     * @throws java.io.IOException
      */
-    public VentanaPrincipal() {
+    public VentanaPrincipal() throws IOException {
         initComponents();
+        BotonPunto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/Lapiz.gif")));
+        BotonPunto.setContentAreaFilled(false);
+        BotonLinea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/Linea.gif")));
+        BotonLinea.setContentAreaFilled(false);
+        BotonCuadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/Rectangulo.gif")));
+        BotonCuadrado.setContentAreaFilled(false);
+        BotonElipse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/Ovalo.gif")));
+        BotonElipse.setContentAreaFilled(false);
+        
     }
 
     /**
@@ -28,32 +40,85 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         AbrirDialog = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
+        AbrirText = new javax.swing.JLabel();
+        CerrarBotonAbrir = new javax.swing.JButton();
         GuardarDialog = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        GuardarText = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        PaintToolbar = new javax.swing.JToolBar();
+        BotonPunto = new javax.swing.JToggleButton();
+        BotonLinea = new javax.swing.JToggleButton();
+        BotonCuadrado = new javax.swing.JToggleButton();
+        BotonElipse = new javax.swing.JToggleButton();
+        PanelInferior = new javax.swing.JSplitPane();
+        PanelColores = new javax.swing.JSplitPane();
+        Colores = new javax.swing.JPanel();
+        NegroBoton = new javax.swing.JButton();
+        RojoBoton = new javax.swing.JButton();
+        AzulBoton = new javax.swing.JButton();
+        BlancoBoton = new javax.swing.JButton();
+        AmarilloBoton = new javax.swing.JButton();
+        VerdeBoton = new javax.swing.JButton();
+        RellenoBox = new javax.swing.JCheckBox();
+        PanelEstado = new javax.swing.JPanel();
+        EstadoLabel = new javax.swing.JLabel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        lienzo1 = new practica4.Lienzo();
+        BarraMenu = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
         BotonNuevo = new javax.swing.JMenuItem();
         BotonAbrir = new javax.swing.JMenuItem();
         BotonGuardar = new javax.swing.JMenuItem();
         MenuEdicion = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        BarraEstadoToggle = new javax.swing.JCheckBoxMenuItem();
 
         AbrirDialog.setTitle("Abrir");
         AbrirDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         AbrirDialog.setMinimumSize(new java.awt.Dimension(156, 36));
         AbrirDialog.setType(java.awt.Window.Type.POPUP);
-        AbrirDialog.getContentPane().setLayout(new java.awt.GridLayout());
 
-        jLabel1.setText("Ha pulsado el botón de Abrir");
-        AbrirDialog.getContentPane().add(jLabel1);
+        AbrirText.setText(" Ha pulsado el botón de Abrir");
+
+        CerrarBotonAbrir.setText("OK");
+        CerrarBotonAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarBotonAbrirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AbrirDialogLayout = new javax.swing.GroupLayout(AbrirDialog.getContentPane());
+        AbrirDialog.getContentPane().setLayout(AbrirDialogLayout);
+        AbrirDialogLayout.setHorizontalGroup(
+            AbrirDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AbrirDialogLayout.createSequentialGroup()
+                .addComponent(AbrirText)
+                .addGap(2, 2, 2))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AbrirDialogLayout.createSequentialGroup()
+                .addComponent(CerrarBotonAbrir)
+                .addGap(46, 46, 46))
+        );
+        AbrirDialogLayout.setVerticalGroup(
+            AbrirDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AbrirDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AbrirText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CerrarBotonAbrir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         GuardarDialog.setTitle("Guardar");
         GuardarDialog.setMinimumSize(new java.awt.Dimension(176, 36));
 
-        jLabel2.setText("Ha pulsado el botón de Guardar");
+        GuardarText.setText("Ha pulsado el botón de Guardar");
+
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout GuardarDialogLayout = new javax.swing.GroupLayout(GuardarDialog.getContentPane());
         GuardarDialog.getContentPane().setLayout(GuardarDialogLayout);
@@ -61,21 +126,186 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             GuardarDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GuardarDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(GuardarText)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GuardarDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(61, 61, 61))
         );
         GuardarDialogLayout.setVerticalGroup(
             GuardarDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GuardarDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(GuardarText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(jEditorPane1);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Paint Basico");
+
+        PaintToolbar.setRollover(true);
+
+        BotonPunto.setFocusable(false);
+        BotonPunto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotonPunto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        PaintToolbar.add(BotonPunto);
+
+        BotonLinea.setFocusable(false);
+        BotonLinea.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotonLinea.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        PaintToolbar.add(BotonLinea);
+
+        BotonCuadrado.setFocusable(false);
+        BotonCuadrado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotonCuadrado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        PaintToolbar.add(BotonCuadrado);
+
+        BotonElipse.setFocusable(false);
+        BotonElipse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotonElipse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotonElipse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonElipseActionPerformed(evt);
+            }
+        });
+        PaintToolbar.add(BotonElipse);
+
+        getContentPane().add(PaintToolbar, java.awt.BorderLayout.PAGE_START);
+
+        PanelInferior.setDividerSize(1);
+        PanelInferior.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        PanelColores.setDividerSize(1);
+
+        NegroBoton.setBackground(new java.awt.Color(0, 0, 0));
+        NegroBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NegroBotonActionPerformed(evt);
+            }
+        });
+
+        RojoBoton.setBackground(new java.awt.Color(255, 0, 51));
+        RojoBoton.setForeground(new java.awt.Color(255, 0, 0));
+
+        AzulBoton.setBackground(new java.awt.Color(0, 0, 255));
+        AzulBoton.setForeground(new java.awt.Color(0, 0, 255));
+        AzulBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AzulBotonActionPerformed(evt);
+            }
+        });
+
+        BlancoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        BlancoBoton.setForeground(new java.awt.Color(255, 255, 255));
+
+        AmarilloBoton.setBackground(new java.awt.Color(255, 255, 0));
+        AmarilloBoton.setForeground(new java.awt.Color(255, 255, 0));
+
+        VerdeBoton.setBackground(new java.awt.Color(0, 255, 0));
+        VerdeBoton.setForeground(new java.awt.Color(51, 255, 51));
+
+        javax.swing.GroupLayout ColoresLayout = new javax.swing.GroupLayout(Colores);
+        Colores.setLayout(ColoresLayout);
+        ColoresLayout.setHorizontalGroup(
+            ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ColoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BlancoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 21, Short.MAX_VALUE)
+                    .addComponent(NegroBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AmarilloBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(RojoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AzulBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(VerdeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(553, Short.MAX_VALUE))
+        );
+        ColoresLayout.setVerticalGroup(
+            ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ColoresLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(RojoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(AzulBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NegroBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AmarilloBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(BlancoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VerdeBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        PanelColores.setLeftComponent(Colores);
+
+        RellenoBox.setText("Relleno");
+        RellenoBox.setPreferredSize(new java.awt.Dimension(19, 10));
+        RellenoBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RellenoBoxActionPerformed(evt);
+            }
+        });
+        PanelColores.setRightComponent(RellenoBox);
+
+        PanelInferior.setLeftComponent(PanelColores);
+
+        PanelEstado.setMinimumSize(new java.awt.Dimension(100, 30));
+        PanelEstado.setLayout(new java.awt.CardLayout());
+
+        EstadoLabel.setText("Estado.");
+        PanelEstado.add(EstadoLabel, "card2");
+
+        PanelInferior.setRightComponent(PanelEstado);
+
+        getContentPane().add(PanelInferior, java.awt.BorderLayout.PAGE_END);
+
+        javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
+        lienzo1.setLayout(lienzo1Layout);
+        lienzo1Layout.setHorizontalGroup(
+            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 732, Short.MAX_VALUE)
+        );
+        lienzo1Layout.setVerticalGroup(
+            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 370, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jDesktopPane1.setLayer(lienzo1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        getContentPane().add(jDesktopPane1, java.awt.BorderLayout.CENTER);
 
         MenuArchivo.setText("Archivo");
 
@@ -106,22 +336,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         MenuArchivo.add(BotonGuardar);
 
-        jMenuBar1.add(MenuArchivo);
+        BarraMenu.add(MenuArchivo);
 
         MenuEdicion.setText("Edición");
 
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("Ver barra de estado");
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        BarraEstadoToggle.setSelected(true);
+        BarraEstadoToggle.setText("Ver barra de estado");
+        BarraEstadoToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
+                BarraEstadoToggleActionPerformed(evt);
             }
         });
-        MenuEdicion.add(jCheckBoxMenuItem1);
+        MenuEdicion.add(BarraEstadoToggle);
 
-        jMenuBar1.add(MenuEdicion);
+        BarraMenu.add(MenuEdicion);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(BarraMenu);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,59 +368,71 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         AbrirDialog.setVisible(true);
     }//GEN-LAST:event_BotonAbrirActionPerformed
 
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void BarraEstadoToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarraEstadoToggleActionPerformed
+        if(BarraEstadoToggle.getState() == true){
+            EstadoLabel.setText("Estado.");
+        } else {
+            EstadoLabel.setText("");
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_BarraEstadoToggleActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPrincipal().setVisible(true);
-            }
-        });
-    }
+    private void RellenoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RellenoBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RellenoBoxActionPerformed
+
+    private void NegroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegroBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NegroBotonActionPerformed
+
+    private void BotonElipseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonElipseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonElipseActionPerformed
+
+    private void AzulBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AzulBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AzulBotonActionPerformed
+
+    private void CerrarBotonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBotonAbrirActionPerformed
+        AbrirDialog.setVisible(false);
+    }//GEN-LAST:event_CerrarBotonAbrirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        GuardarDialog.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog AbrirDialog;
+    private javax.swing.JLabel AbrirText;
+    private javax.swing.JButton AmarilloBoton;
+    private javax.swing.JButton AzulBoton;
+    private javax.swing.JCheckBoxMenuItem BarraEstadoToggle;
+    private javax.swing.JMenuBar BarraMenu;
+    private javax.swing.JButton BlancoBoton;
     private javax.swing.JMenuItem BotonAbrir;
+    private javax.swing.JToggleButton BotonCuadrado;
+    private javax.swing.JToggleButton BotonElipse;
     private javax.swing.JMenuItem BotonGuardar;
+    private javax.swing.JToggleButton BotonLinea;
     private javax.swing.JMenuItem BotonNuevo;
+    private javax.swing.JToggleButton BotonPunto;
+    private javax.swing.JButton CerrarBotonAbrir;
+    private javax.swing.JPanel Colores;
+    private javax.swing.JLabel EstadoLabel;
     private javax.swing.JDialog GuardarDialog;
+    private javax.swing.JLabel GuardarText;
     private javax.swing.JMenu MenuArchivo;
     private javax.swing.JMenu MenuEdicion;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton NegroBoton;
+    private javax.swing.JToolBar PaintToolbar;
+    private javax.swing.JSplitPane PanelColores;
+    private javax.swing.JPanel PanelEstado;
+    private javax.swing.JSplitPane PanelInferior;
+    private javax.swing.JCheckBox RellenoBox;
+    private javax.swing.JButton RojoBoton;
+    private javax.swing.JButton VerdeBoton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JPanel jPanel2;
+    private practica4.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
 }

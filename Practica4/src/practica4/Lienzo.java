@@ -5,10 +5,12 @@
  */
 package practica4;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Adri
  */
-public class Lienzo {
+public class Lienzo extends JPanel {
     
 }
