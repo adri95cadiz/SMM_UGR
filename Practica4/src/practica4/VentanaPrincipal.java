@@ -27,45 +27,88 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        AbrirDialog = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        GuardarDialog = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        MenuArchivo = new javax.swing.JMenu();
         BotonNuevo = new javax.swing.JMenuItem();
         BotonAbrir = new javax.swing.JMenuItem();
         BotonGuardar = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        MenuEdicion = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
 
+        AbrirDialog.setTitle("Abrir");
+        AbrirDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AbrirDialog.setMinimumSize(new java.awt.Dimension(156, 36));
+        AbrirDialog.setType(java.awt.Window.Type.POPUP);
+        AbrirDialog.getContentPane().setLayout(new java.awt.GridLayout());
+
+        jLabel1.setText("Ha pulsado el botón de Abrir");
+        AbrirDialog.getContentPane().add(jLabel1);
+
+        GuardarDialog.setTitle("Guardar");
+        GuardarDialog.setMinimumSize(new java.awt.Dimension(176, 36));
+
+        jLabel2.setText("Ha pulsado el botón de Guardar");
+
+        javax.swing.GroupLayout GuardarDialogLayout = new javax.swing.GroupLayout(GuardarDialog.getContentPane());
+        GuardarDialog.getContentPane().setLayout(GuardarDialogLayout);
+        GuardarDialogLayout.setHorizontalGroup(
+            GuardarDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GuardarDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        GuardarDialogLayout.setVerticalGroup(
+            GuardarDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GuardarDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jEditorPane1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Paint Basico");
 
-        jMenu1.setText("Archivo");
+        MenuArchivo.setText("Archivo");
 
+        BotonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/NuevoBoceto.GIF"))); // NOI18N
         BotonNuevo.setText("Nuevo");
         BotonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonNuevoActionPerformed(evt);
             }
         });
-        jMenu1.add(BotonNuevo);
+        MenuArchivo.add(BotonNuevo);
 
+        BotonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/Guardar.gif"))); // NOI18N
         BotonAbrir.setText("Abrir");
         BotonAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonAbrirActionPerformed(evt);
             }
         });
-        jMenu1.add(BotonAbrir);
+        MenuArchivo.add(BotonAbrir);
 
+        BotonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/Guardar.gif"))); // NOI18N
         BotonGuardar.setText("Guardar");
         BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonGuardarActionPerformed(evt);
             }
         });
-        jMenu1.add(BotonGuardar);
+        MenuArchivo.add(BotonGuardar);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(MenuArchivo);
 
-        jMenu2.setText("Edicion");
+        MenuEdicion.setText("Edición");
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("Ver barra de estado");
@@ -74,22 +117,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jCheckBoxMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(jCheckBoxMenuItem1);
+        MenuEdicion.add(jCheckBoxMenuItem1);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(MenuEdicion);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -99,11 +131,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonNuevoActionPerformed
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-        // TODO add your handling code here:
+        GuardarDialog.setVisible(true);
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
     private void BotonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirActionPerformed
-        // TODO add your handling code here:
+        AbrirDialog.setVisible(true);
     }//GEN-LAST:event_BotonAbrirActionPerformed
 
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
@@ -147,12 +179,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog AbrirDialog;
     private javax.swing.JMenuItem BotonAbrir;
     private javax.swing.JMenuItem BotonGuardar;
     private javax.swing.JMenuItem BotonNuevo;
+    private javax.swing.JDialog GuardarDialog;
+    private javax.swing.JMenu MenuArchivo;
+    private javax.swing.JMenu MenuEdicion;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
