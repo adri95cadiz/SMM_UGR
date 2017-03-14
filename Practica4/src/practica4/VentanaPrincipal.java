@@ -5,7 +5,17 @@
  */
 package practica4;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -13,6 +23,13 @@ import java.io.IOException;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    class Estado {
+        public String forma = "lapiz"; 
+        public String color = "negro";  
+     };
+    
+    Estado estado = new Estado();
+    
     /**
      * Creates new form Ventanapr
      * @throws java.io.IOException
@@ -27,7 +44,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BotonCuadrado.setContentAreaFilled(false);
         BotonElipse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/Ovalo.gif")));
         BotonElipse.setContentAreaFilled(false);
-        
+        EstadoLabel.setText("Forma: " + estado.forma +", color: " + estado.color);
+    }
+    
+    public void updateStatus(){
+        EstadoLabel.setText("Forma: " + estado.forma +", color: " + estado.color);
     }
 
     /**
@@ -39,12 +60,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        AbrirDialog = new javax.swing.JDialog();
-        AbrirText = new javax.swing.JLabel();
-        CerrarBotonAbrir = new javax.swing.JButton();
-        GuardarDialog = new javax.swing.JDialog();
-        GuardarText = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         GrupoToolbar = new javax.swing.ButtonGroup();
         GrupoColores = new javax.swing.ButtonGroup();
         PanelSuperior = new javax.swing.JPanel();
@@ -75,76 +90,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         MenuEdicion = new javax.swing.JMenu();
         BarraEstadoToggle = new javax.swing.JCheckBoxMenuItem();
 
-        AbrirDialog.setTitle("Abrir");
-        AbrirDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        AbrirDialog.setMinimumSize(new java.awt.Dimension(156, 36));
-        AbrirDialog.setType(java.awt.Window.Type.POPUP);
-
-        AbrirText.setText(" Ha pulsado el botón de Abrir");
-
-        CerrarBotonAbrir.setText("OK");
-        CerrarBotonAbrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CerrarBotonAbrirActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout AbrirDialogLayout = new javax.swing.GroupLayout(AbrirDialog.getContentPane());
-        AbrirDialog.getContentPane().setLayout(AbrirDialogLayout);
-        AbrirDialogLayout.setHorizontalGroup(
-            AbrirDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AbrirDialogLayout.createSequentialGroup()
-                .addComponent(AbrirText)
-                .addGap(2, 2, 2))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AbrirDialogLayout.createSequentialGroup()
-                .addComponent(CerrarBotonAbrir)
-                .addGap(46, 46, 46))
-        );
-        AbrirDialogLayout.setVerticalGroup(
-            AbrirDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AbrirDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AbrirText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CerrarBotonAbrir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        GuardarDialog.setTitle("Guardar");
-        GuardarDialog.setMinimumSize(new java.awt.Dimension(176, 36));
-
-        GuardarText.setText("Ha pulsado el botón de Guardar");
-
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout GuardarDialogLayout = new javax.swing.GroupLayout(GuardarDialog.getContentPane());
-        GuardarDialog.getContentPane().setLayout(GuardarDialogLayout);
-        GuardarDialogLayout.setHorizontalGroup(
-            GuardarDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GuardarDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(GuardarText)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GuardarDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(61, 61, 61))
-        );
-        GuardarDialogLayout.setVerticalGroup(
-            GuardarDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GuardarDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(GuardarText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Paint Basico");
 
@@ -152,7 +97,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         PaintToolbar.setRollover(true);
 
+        BotonPunto.setBackground(new java.awt.Color(0, 0, 0));
         GrupoToolbar.add(BotonPunto);
+        BotonPunto.setSelected(true);
         BotonPunto.setFocusable(false);
         BotonPunto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BotonPunto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -167,12 +114,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BotonLinea.setFocusable(false);
         BotonLinea.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BotonLinea.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotonLinea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonLineaActionPerformed(evt);
+            }
+        });
         PaintToolbar.add(BotonLinea);
 
         GrupoToolbar.add(BotonCuadrado);
         BotonCuadrado.setFocusable(false);
         BotonCuadrado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BotonCuadrado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotonCuadrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCuadradoActionPerformed(evt);
+            }
+        });
         PaintToolbar.add(BotonCuadrado);
 
         GrupoToolbar.add(BotonElipse);
@@ -189,6 +146,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelSuperior.add(PaintToolbar, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(PanelSuperior, java.awt.BorderLayout.PAGE_START);
+
+        PanelIzquierdo.setMinimumSize(new java.awt.Dimension(100, 1));
+        PanelIzquierdo.setPreferredSize(new java.awt.Dimension(100, 1));
 
         javax.swing.GroupLayout PanelIzquierdoLayout = new javax.swing.GroupLayout(PanelIzquierdo);
         PanelIzquierdo.setLayout(PanelIzquierdoLayout);
@@ -236,26 +196,57 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         NegroBoton.setBackground(new java.awt.Color(0, 0, 0));
         GrupoColores.add(NegroBoton);
+        NegroBoton.setSelected(true);
+        NegroBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NegroBotonActionPerformed(evt);
+            }
+        });
 
         RojoBoton.setBackground(new java.awt.Color(255, 0, 0));
         GrupoColores.add(RojoBoton);
         RojoBoton.setForeground(new java.awt.Color(255, 0, 0));
+        RojoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RojoBotonActionPerformed(evt);
+            }
+        });
 
         AzulBoton.setBackground(new java.awt.Color(0, 0, 255));
         GrupoColores.add(AzulBoton);
         AzulBoton.setForeground(new java.awt.Color(0, 0, 255));
+        AzulBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AzulBotonActionPerformed(evt);
+            }
+        });
 
         BlancoBoton.setBackground(new java.awt.Color(255, 255, 255));
         GrupoColores.add(BlancoBoton);
         BlancoBoton.setForeground(new java.awt.Color(255, 255, 255));
+        BlancoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BlancoBotonActionPerformed(evt);
+            }
+        });
 
         AmarilloBoton.setBackground(new java.awt.Color(255, 255, 0));
         GrupoColores.add(AmarilloBoton);
         AmarilloBoton.setForeground(new java.awt.Color(255, 255, 0));
+        AmarilloBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AmarilloBotonActionPerformed(evt);
+            }
+        });
 
         VerdeBoton.setBackground(new java.awt.Color(0, 255, 0));
         GrupoColores.add(VerdeBoton);
         VerdeBoton.setForeground(new java.awt.Color(0, 255, 0));
+        VerdeBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerdeBotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ColoresLayout = new javax.swing.GroupLayout(Colores);
         Colores.setLayout(ColoresLayout);
@@ -360,15 +351,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNuevoActionPerformed
-        // TODO add your handling code here:
+        this.lienzo.clearPoints();
+        this.lienzo.repaint();
     }//GEN-LAST:event_BotonNuevoActionPerformed
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-        GuardarDialog.setVisible(true);
+        JFileChooser dlg = new JFileChooser();
+        int resp = dlg.showSaveDialog(this);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+        File f = dlg.getSelectedFile();
+        BufferedImage image = (BufferedImage) this.lienzo.createImage(this.lienzo.getWidth(), this.lienzo.getHeight());
+        Graphics g = image.createGraphics();
+        this.lienzo.paint(g);
+        g.dispose();
+            try {
+                ImageIO.write((RenderedImage) image, "jpg", f);
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
     private void BotonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirActionPerformed
-        AbrirDialog.setVisible(true);
+        JFileChooser dlg = new JFileChooser();
+        int resp = dlg.showOpenDialog(this);
+        if( resp == JFileChooser.APPROVE_OPTION) {
+        BufferedImage image = null;
+        File f = dlg.getSelectedFile();
+            try {
+                image = ImageIO.read(f);
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        Graphics g = image.getGraphics();
+        g.drawImage(image, 0, 0, lienzo);
+        this.lienzo.paint(g);
+        }
     }//GEN-LAST:event_BotonAbrirActionPerformed
 
     private void BarraEstadoToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarraEstadoToggleActionPerformed
@@ -380,28 +398,70 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BarraEstadoToggleActionPerformed
 
     private void RellenoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RellenoBoxActionPerformed
-        // TODO add your handling code here:
+        this.lienzo.setRelleno(this.RellenoBox.isSelected());
     }//GEN-LAST:event_RellenoBoxActionPerformed
 
     private void BotonElipseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonElipseActionPerformed
-        // TODO add your handling code here:
+        this.lienzo.setForma(Forma.ELIPSE);
+        estado.forma = "elipse";
+        this.updateStatus();
     }//GEN-LAST:event_BotonElipseActionPerformed
 
-    private void CerrarBotonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBotonAbrirActionPerformed
-        AbrirDialog.setVisible(false);
-    }//GEN-LAST:event_CerrarBotonAbrirActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GuardarDialog.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void BotonPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPuntoActionPerformed
-        // TODO add your handling code here:
+        this.lienzo.setForma(Forma.PUNTO);
+        estado.forma = "lapiz";
+        this.updateStatus();
     }//GEN-LAST:event_BotonPuntoActionPerformed
 
+    private void NegroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegroBotonActionPerformed
+        this.lienzo.setColor(Color.black);
+        estado.color = "negro";
+        this.updateStatus();
+    }//GEN-LAST:event_NegroBotonActionPerformed
+
+    private void RojoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RojoBotonActionPerformed
+        this.lienzo.setColor(Color.red);
+        estado.color = "rojo";
+        this.updateStatus();
+    }//GEN-LAST:event_RojoBotonActionPerformed
+
+    private void AzulBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AzulBotonActionPerformed
+        this.lienzo.setColor(Color.blue);
+        estado.color = "azul";
+        this.updateStatus();
+    }//GEN-LAST:event_AzulBotonActionPerformed
+
+    private void BlancoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlancoBotonActionPerformed
+        this.lienzo.setColor(Color.white);
+        estado.color = "blanco";
+        this.updateStatus();
+    }//GEN-LAST:event_BlancoBotonActionPerformed
+
+    private void AmarilloBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmarilloBotonActionPerformed
+        this.lienzo.setColor(Color.yellow);
+        estado.color = "amarillo";
+        this.updateStatus();
+    }//GEN-LAST:event_AmarilloBotonActionPerformed
+
+    private void VerdeBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerdeBotonActionPerformed
+        this.lienzo.setColor(Color.green);
+        estado.color = "verde";
+        this.updateStatus();
+    }//GEN-LAST:event_VerdeBotonActionPerformed
+
+    private void BotonLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLineaActionPerformed
+        this.lienzo.setForma(Forma.LINEA);
+        estado.forma = "linea";
+        this.updateStatus();
+    }//GEN-LAST:event_BotonLineaActionPerformed
+
+    private void BotonCuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCuadradoActionPerformed
+        this.lienzo.setForma(Forma.RECTANGULO);
+        estado.forma = "rectangulo";
+        this.updateStatus();
+    }//GEN-LAST:event_BotonCuadradoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog AbrirDialog;
-    private javax.swing.JLabel AbrirText;
     private javax.swing.JToggleButton AmarilloBoton;
     private javax.swing.JToggleButton AzulBoton;
     private javax.swing.JCheckBoxMenuItem BarraEstadoToggle;
@@ -414,13 +474,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToggleButton BotonLinea;
     private javax.swing.JMenuItem BotonNuevo;
     private javax.swing.JToggleButton BotonPunto;
-    private javax.swing.JButton CerrarBotonAbrir;
     private javax.swing.JPanel Colores;
     private javax.swing.JLabel EstadoLabel;
     private javax.swing.ButtonGroup GrupoColores;
     private javax.swing.ButtonGroup GrupoToolbar;
-    private javax.swing.JDialog GuardarDialog;
-    private javax.swing.JLabel GuardarText;
     private javax.swing.JMenu MenuArchivo;
     private javax.swing.JMenu MenuEdicion;
     private javax.swing.JToggleButton NegroBoton;
@@ -433,7 +490,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox RellenoBox;
     private javax.swing.JToggleButton RojoBoton;
     private javax.swing.JToggleButton VerdeBoton;
-    private javax.swing.JButton jButton1;
     private practica4.Lienzo lienzo;
     // End of variables declaration//GEN-END:variables
 }
