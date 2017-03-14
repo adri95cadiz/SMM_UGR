@@ -45,26 +45,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         GuardarDialog = new javax.swing.JDialog();
         GuardarText = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        GrupoToolbar = new javax.swing.ButtonGroup();
+        GrupoColores = new javax.swing.ButtonGroup();
+        PanelSuperior = new javax.swing.JPanel();
         PaintToolbar = new javax.swing.JToolBar();
         BotonPunto = new javax.swing.JToggleButton();
         BotonLinea = new javax.swing.JToggleButton();
         BotonCuadrado = new javax.swing.JToggleButton();
         BotonElipse = new javax.swing.JToggleButton();
-        PanelInferior = new javax.swing.JSplitPane();
-        PanelColores = new javax.swing.JSplitPane();
-        Colores = new javax.swing.JPanel();
-        NegroBoton = new javax.swing.JButton();
-        RojoBoton = new javax.swing.JButton();
-        AzulBoton = new javax.swing.JButton();
-        BlancoBoton = new javax.swing.JButton();
-        AmarilloBoton = new javax.swing.JButton();
-        VerdeBoton = new javax.swing.JButton();
+        PanelIzquierdo = new javax.swing.JPanel();
+        PanelDerecho = new javax.swing.JPanel();
+        PanelInferior = new javax.swing.JPanel();
         RellenoBox = new javax.swing.JCheckBox();
         PanelEstado = new javax.swing.JPanel();
         EstadoLabel = new javax.swing.JLabel();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        lienzo1 = new practica4.Lienzo();
+        Colores = new javax.swing.JPanel();
+        NegroBoton = new javax.swing.JToggleButton();
+        RojoBoton = new javax.swing.JToggleButton();
+        AzulBoton = new javax.swing.JToggleButton();
+        BlancoBoton = new javax.swing.JToggleButton();
+        AmarilloBoton = new javax.swing.JToggleButton();
+        VerdeBoton = new javax.swing.JToggleButton();
+        lienzo = new practica4.Lienzo();
         BarraMenu = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
         BotonNuevo = new javax.swing.JMenuItem();
@@ -143,37 +145,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Paint Basico");
 
+        PanelSuperior.setLayout(new java.awt.BorderLayout());
+
         PaintToolbar.setRollover(true);
 
+        GrupoToolbar.add(BotonPunto);
         BotonPunto.setFocusable(false);
         BotonPunto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BotonPunto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotonPunto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonPuntoActionPerformed(evt);
+            }
+        });
         PaintToolbar.add(BotonPunto);
 
+        GrupoToolbar.add(BotonLinea);
         BotonLinea.setFocusable(false);
         BotonLinea.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BotonLinea.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         PaintToolbar.add(BotonLinea);
 
+        GrupoToolbar.add(BotonCuadrado);
         BotonCuadrado.setFocusable(false);
         BotonCuadrado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BotonCuadrado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         PaintToolbar.add(BotonCuadrado);
 
+        GrupoToolbar.add(BotonElipse);
         BotonElipse.setFocusable(false);
         BotonElipse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BotonElipse.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -184,39 +186,76 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         PaintToolbar.add(BotonElipse);
 
-        getContentPane().add(PaintToolbar, java.awt.BorderLayout.PAGE_START);
+        PanelSuperior.add(PaintToolbar, java.awt.BorderLayout.PAGE_START);
 
-        PanelInferior.setDividerSize(1);
-        PanelInferior.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        getContentPane().add(PanelSuperior, java.awt.BorderLayout.PAGE_START);
 
-        PanelColores.setDividerSize(1);
+        javax.swing.GroupLayout PanelIzquierdoLayout = new javax.swing.GroupLayout(PanelIzquierdo);
+        PanelIzquierdo.setLayout(PanelIzquierdoLayout);
+        PanelIzquierdoLayout.setHorizontalGroup(
+            PanelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        PanelIzquierdoLayout.setVerticalGroup(
+            PanelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 379, Short.MAX_VALUE)
+        );
 
-        NegroBoton.setBackground(new java.awt.Color(0, 0, 0));
-        NegroBoton.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(PanelIzquierdo, java.awt.BorderLayout.LINE_START);
+
+        javax.swing.GroupLayout PanelDerechoLayout = new javax.swing.GroupLayout(PanelDerecho);
+        PanelDerecho.setLayout(PanelDerechoLayout);
+        PanelDerechoLayout.setHorizontalGroup(
+            PanelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        PanelDerechoLayout.setVerticalGroup(
+            PanelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 379, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanelDerecho, java.awt.BorderLayout.LINE_END);
+
+        PanelInferior.setLayout(new java.awt.BorderLayout());
+
+        RellenoBox.setText("Relleno");
+        RellenoBox.setPreferredSize(new java.awt.Dimension(80, 10));
+        RellenoBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NegroBotonActionPerformed(evt);
+                RellenoBoxActionPerformed(evt);
             }
         });
+        PanelInferior.add(RellenoBox, java.awt.BorderLayout.LINE_END);
 
-        RojoBoton.setBackground(new java.awt.Color(255, 0, 51));
+        PanelEstado.setLayout(new java.awt.CardLayout());
+
+        EstadoLabel.setText("Estado");
+        PanelEstado.add(EstadoLabel, "card2");
+
+        PanelInferior.add(PanelEstado, java.awt.BorderLayout.PAGE_END);
+
+        NegroBoton.setBackground(new java.awt.Color(0, 0, 0));
+        GrupoColores.add(NegroBoton);
+
+        RojoBoton.setBackground(new java.awt.Color(255, 0, 0));
+        GrupoColores.add(RojoBoton);
         RojoBoton.setForeground(new java.awt.Color(255, 0, 0));
 
         AzulBoton.setBackground(new java.awt.Color(0, 0, 255));
+        GrupoColores.add(AzulBoton);
         AzulBoton.setForeground(new java.awt.Color(0, 0, 255));
-        AzulBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AzulBotonActionPerformed(evt);
-            }
-        });
 
         BlancoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        GrupoColores.add(BlancoBoton);
         BlancoBoton.setForeground(new java.awt.Color(255, 255, 255));
 
         AmarilloBoton.setBackground(new java.awt.Color(255, 255, 0));
+        GrupoColores.add(AmarilloBoton);
         AmarilloBoton.setForeground(new java.awt.Color(255, 255, 0));
 
         VerdeBoton.setBackground(new java.awt.Color(0, 255, 0));
-        VerdeBoton.setForeground(new java.awt.Color(51, 255, 51));
+        GrupoColores.add(VerdeBoton);
+        VerdeBoton.setForeground(new java.awt.Color(0, 255, 0));
 
         javax.swing.GroupLayout ColoresLayout = new javax.swing.GroupLayout(Colores);
         Colores.setLayout(ColoresLayout);
@@ -224,88 +263,51 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ColoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BlancoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 21, Short.MAX_VALUE)
-                    .addComponent(NegroBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(BlancoBoton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(NegroBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AmarilloBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(RojoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RojoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AmarilloBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AzulBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AzulBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(VerdeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(553, Short.MAX_VALUE))
+                .addContainerGap(565, Short.MAX_VALUE))
         );
         ColoresLayout.setVerticalGroup(
             ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ColoresLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addContainerGap()
                 .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RojoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                    .addComponent(AzulBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NegroBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(AzulBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(NegroBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RojoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AmarilloBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                    .addComponent(BlancoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BlancoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(AmarilloBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(VerdeBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
-        PanelColores.setLeftComponent(Colores);
-
-        RellenoBox.setText("Relleno");
-        RellenoBox.setPreferredSize(new java.awt.Dimension(19, 10));
-        RellenoBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RellenoBoxActionPerformed(evt);
-            }
-        });
-        PanelColores.setRightComponent(RellenoBox);
-
-        PanelInferior.setLeftComponent(PanelColores);
-
-        PanelEstado.setMinimumSize(new java.awt.Dimension(100, 30));
-        PanelEstado.setLayout(new java.awt.CardLayout());
-
-        EstadoLabel.setText("Estado.");
-        PanelEstado.add(EstadoLabel, "card2");
-
-        PanelInferior.setRightComponent(PanelEstado);
+        PanelInferior.add(Colores, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(PanelInferior, java.awt.BorderLayout.PAGE_END);
 
-        javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
-        lienzo1.setLayout(lienzo1Layout);
-        lienzo1Layout.setHorizontalGroup(
-            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 732, Short.MAX_VALUE)
+        javax.swing.GroupLayout lienzoLayout = new javax.swing.GroupLayout(lienzo);
+        lienzo.setLayout(lienzoLayout);
+        lienzoLayout.setHorizontalGroup(
+            lienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 542, Short.MAX_VALUE)
         );
-        lienzo1Layout.setVerticalGroup(
-            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+        lienzoLayout.setVerticalGroup(
+            lienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 379, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jDesktopPane1.setLayer(lienzo1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        getContentPane().add(jDesktopPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(lienzo, java.awt.BorderLayout.CENTER);
 
         MenuArchivo.setText("Archivo");
 
@@ -318,8 +320,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         MenuArchivo.add(BotonNuevo);
 
-        BotonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/Guardar.gif"))); // NOI18N
+        BotonAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/practica4/iconos/NuevoBoceto.GIF"))); // NOI18N
         BotonAbrir.setText("Abrir");
+        BotonAbrir.setPreferredSize(new java.awt.Dimension(309, 26));
         BotonAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonAbrirActionPerformed(evt);
@@ -370,9 +373,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void BarraEstadoToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarraEstadoToggleActionPerformed
         if(BarraEstadoToggle.getState() == true){
-            EstadoLabel.setText("Estado.");
+            PanelEstado.setVisible(true);
         } else {
-            EstadoLabel.setText("");
+            PanelEstado.setVisible(false);
         }
     }//GEN-LAST:event_BarraEstadoToggleActionPerformed
 
@@ -380,17 +383,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RellenoBoxActionPerformed
 
-    private void NegroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NegroBotonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NegroBotonActionPerformed
-
     private void BotonElipseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonElipseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonElipseActionPerformed
-
-    private void AzulBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AzulBotonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AzulBotonActionPerformed
 
     private void CerrarBotonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBotonAbrirActionPerformed
         AbrirDialog.setVisible(false);
@@ -400,14 +395,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         GuardarDialog.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void BotonPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPuntoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonPuntoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog AbrirDialog;
     private javax.swing.JLabel AbrirText;
-    private javax.swing.JButton AmarilloBoton;
-    private javax.swing.JButton AzulBoton;
+    private javax.swing.JToggleButton AmarilloBoton;
+    private javax.swing.JToggleButton AzulBoton;
     private javax.swing.JCheckBoxMenuItem BarraEstadoToggle;
     private javax.swing.JMenuBar BarraMenu;
-    private javax.swing.JButton BlancoBoton;
+    private javax.swing.JToggleButton BlancoBoton;
     private javax.swing.JMenuItem BotonAbrir;
     private javax.swing.JToggleButton BotonCuadrado;
     private javax.swing.JToggleButton BotonElipse;
@@ -418,21 +417,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton CerrarBotonAbrir;
     private javax.swing.JPanel Colores;
     private javax.swing.JLabel EstadoLabel;
+    private javax.swing.ButtonGroup GrupoColores;
+    private javax.swing.ButtonGroup GrupoToolbar;
     private javax.swing.JDialog GuardarDialog;
     private javax.swing.JLabel GuardarText;
     private javax.swing.JMenu MenuArchivo;
     private javax.swing.JMenu MenuEdicion;
-    private javax.swing.JButton NegroBoton;
+    private javax.swing.JToggleButton NegroBoton;
     private javax.swing.JToolBar PaintToolbar;
-    private javax.swing.JSplitPane PanelColores;
+    private javax.swing.JPanel PanelDerecho;
     private javax.swing.JPanel PanelEstado;
-    private javax.swing.JSplitPane PanelInferior;
+    private javax.swing.JPanel PanelInferior;
+    private javax.swing.JPanel PanelIzquierdo;
+    private javax.swing.JPanel PanelSuperior;
     private javax.swing.JCheckBox RellenoBox;
-    private javax.swing.JButton RojoBoton;
-    private javax.swing.JButton VerdeBoton;
+    private javax.swing.JToggleButton RojoBoton;
+    private javax.swing.JToggleButton VerdeBoton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JPanel jPanel2;
-    private practica4.Lienzo lienzo1;
+    private practica4.Lienzo lienzo;
     // End of variables declaration//GEN-END:variables
 }

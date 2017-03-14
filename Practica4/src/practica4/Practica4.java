@@ -5,6 +5,8 @@
  */
 package practica4;
 
+import java.io.IOException;
+
 /**
  *
  * @author Adri
@@ -13,8 +15,9 @@ public class Practica4 {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         VentanaPrincipal paint = new VentanaPrincipal();
         paint.setVisible(true);
     }
