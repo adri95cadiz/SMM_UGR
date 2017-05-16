@@ -34,10 +34,10 @@ import sm.image.ThresholdOp;
 import sm.image.TintOp;
 
 /**
- * Esta clase representa a la ventana principal de la aplicaci�n, es la que contiene
- * las barras de herramientas, el men� y que contiene n ventanas internas (IntenalWindow)
+ * Esta clase representa a la ventana principal de la aplicación, es la que contiene
+ * las barras de herramientas, el menú y que contienen ventanas internas (IntenalWindow)
  * 
- * @author Ernesto Serrano
+ * @author Adri
  */
 public class MainWindow extends javax.swing.JFrame
 {
