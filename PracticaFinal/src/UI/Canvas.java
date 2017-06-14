@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2017 Adri
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package UI;
 
 import java.awt.AlphaComposite;
@@ -18,17 +34,24 @@ import graphics.Curve;
 import graphics.Polygon;
 import graphics.Polyline;
 import graphics.Shape;
+import graphics.Text;
+import java.awt.Image;
 
 /**
+ * @author adri
  * Clase que extiene un JPanel para pintar sobre el un vector de formas
  */
 public class Canvas extends javax.swing.JPanel implements Cloneable
 {
-
+    private Image image;
     /**
      * Vector de formas
      */
     protected List<graphics.Shape> shapes = new ArrayList();
+    /**
+     * Vector de texto
+     */
+    protected List<graphics.Text> textArray = new ArrayList();
     /**
      * Forma seleccionada
      */
@@ -189,12 +212,11 @@ public class Canvas extends javax.swing.JPanel implements Cloneable
 
         } else if(Config.GENERALCONFIG.getSelectedTool() == Config.Tool.TEXT)
         { 
-            Graphics g = null;
-            g.setColor(Config.GENERALCONFIG.getSelectedFrontColor());
-            g.setFont(Config.GENERALCONFIG.getFont());
-            g.drawString("Java Source", evt.getPoint().x, evt.getPoint().y);      
-            super.paintComponent(g);  
-            
+            try {
+                this.textArray.add(new Text(Config.GENERALCONFIG.clone(), evt.getPoint(), Config.GENERALCONFIG.getText()));
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
+            }            
         } else
             try
             {
@@ -252,8 +274,7 @@ public class Canvas extends javax.swing.JPanel implements Cloneable
                             this.selectedShape = new graphics.Curve(Config.GENERALCONFIG.clone(), evt.getPoint());
 
                     }
-                    break;
-
+                    break; 
                 }
 
                 this.shapes.add(this.selectedShape);
@@ -272,13 +293,19 @@ public class Canvas extends javax.swing.JPanel implements Cloneable
     public void paint(Graphics g)
     {
         super.paint(g);
-        this.paintShapeVector(g);
+        Graphics2D g2d = (Graphics2D)g;
+        if(image != null) g.drawImage(image,0,0,this);
+        this.draw(g2d);
     }
-
-    private void paintShapeVector(Graphics g)
+    
+    private void draw(Graphics2D g2d)
     {
-        Graphics2D g2d = (Graphics2D) g;
+        this.paintShapeVector(g2d); 
+        this.paintTextVector(g2d);
+    }   
 
+    private void paintShapeVector(Graphics2D g2d)
+    {
         // Activamos el antialiasing GLOBAL
         if (Config.GENERALCONFIG.getAntialiasing())
             g2d.setRenderingHints(new RenderingHints(
@@ -312,7 +339,37 @@ public class Canvas extends javax.swing.JPanel implements Cloneable
 
         }
     }
+    
+    private void paintTextVector(Graphics2D g2d)
+    { 
+        // Activamos el antialiasing GLOBAL
+        if (Config.GENERALCONFIG.getAntialiasing())
+            g2d.setRenderingHints(new RenderingHints(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON
+            ));
+        // Activamos el canal alfa GLOBAL
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) Config.GENERALCONFIG.getAlpha() / 100));
+        
+        if (this.clip != null)
+            g2d.clip(this.clip);
+        
+        for (int i = 0; i<textArray.size(); i++)
+        {
+            g2d.setFont(textArray.get(i).getFont());
+            g2d.setColor(textArray.get(i).getColor());
+            g2d.drawString(textArray.get(i).getString(), textArray.get(i).getStartPoint().x, textArray.get(i).getStartPoint().y);
+        }
+    }
+    
+    public Image getImage() {
+        return image;
+    }
 
+    public void setImage(Image image) {
+        this.image = image;
+    }
+    
     public Shape getSelectedShape()
     {
         return this.selectedShape;

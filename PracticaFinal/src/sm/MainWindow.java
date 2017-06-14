@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2017 Adri
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package sm;
 
 import java.awt.Color;
@@ -46,11 +62,12 @@ import sm.image.SubtractionOp;
 import sm.image.ThresholdOp;
 import sm.image.TintOp;
 import sm.sound.SMSoundRecorder;
+
 /**
  * Esta clase representa a la ventana principal de la aplicación, es la que contiene
  * las barras de herramientas, el menú y que contiene n ventanas internas (IntenalWindow)
  *
- * @author Ernesto Serrano
+ * @author adri
  */
 public class MainWindow extends javax.swing.JFrame
 {
@@ -2374,6 +2391,8 @@ public class MainWindow extends javax.swing.JFrame
     private void jToggleButtonTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonTextActionPerformed
         Config.GENERALCONFIG.setSelectedTool(Config.Tool.TEXT);
         this.jStatusBarTool.setText("Texto");
+        String texto = JOptionPane.showInputDialog (this, "Introduzca el texto a dibujar: ", "showInputDialog",JOptionPane.INFORMATION_MESSAGE);
+        Config.GENERALCONFIG.setText(texto);
     }//GEN-LAST:event_jToggleButtonTextActionPerformed
 
     private void jButtonFontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFontActionPerformed

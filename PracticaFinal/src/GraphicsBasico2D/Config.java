@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2017 Adri
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package GraphicsBasico2D;
 
 import java.awt.BasicStroke;
@@ -7,6 +23,7 @@ import java.awt.Font;
 
 
 /**
+ * @author adri
  * Esta clase contiene la configuración de la ventana principal en un momento determinado
  * cada vez que se crea un nuevo Shape se le asigna una copia del estado actual, que pasa a
  * ser independiente para cada instancia de Shape
@@ -24,7 +41,7 @@ public class Config implements Cloneable
     private Boolean antialiasing = false;
     private int alpha = 100;
     private Font font = Font.getFont("SanSerif");
-    
+    private String text;
     /**
      * Clona el objeto
      *
@@ -44,6 +61,7 @@ public class Config implements Cloneable
         newconfig.stroke = this.stroke;
         newconfig.antialiasing = this.antialiasing;
         newconfig.alpha = this.alpha;
+        newconfig.font = this.font;
 
         return newconfig;
     }
@@ -213,5 +231,14 @@ public class Config implements Cloneable
     public void setFont(Font font) {
         this.font = font;
     }
+    
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+    
 
 }

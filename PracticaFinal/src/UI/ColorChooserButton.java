@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2017 Adri
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package UI;
 
 import java.awt.Color;
@@ -14,6 +30,7 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 
 /**
+ * @author adri
  * Esta clase extiende un JButton y hace que al hacer click en el mismo despligue un 
  * panel jColorChooser, una vez seleccionado pondra el color seleccionado como fondo del botón
  */
@@ -103,7 +120,7 @@ public class ColorChooserButton extends JButton
      * @param main
      * @param width
      * @param height
-     * @return 
+     * @return icon icono de imagen para asignar.
      */
     private static ImageIcon createIcon(Color main, int width, int height)
     {

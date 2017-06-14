@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2017 Adri
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package graphics;
 
 import java.awt.Color;
@@ -14,6 +30,7 @@ import java.awt.geom.Rectangle2D;
 import GraphicsBasico2D.IShape;
 
 /**
+ * @author adri
  * Esta clase define una figura de nuestra aplicación, hereda de Shape y le agrega 
  * mas funcionalidad
  */
@@ -39,7 +56,7 @@ public class Shape implements java.awt.Shape, Cloneable, IShape
 
     /**
      * Clone una imagen en otra
-     * @return 
+     * @return shape clonada
      * @throws java.lang.CloneNotSupportedException 
      */
     @Override
@@ -240,7 +257,7 @@ public class Shape implements java.awt.Shape, Cloneable, IShape
      * @param y
      * @param w
      * @param h
-     * @return 
+     * @return true si el punto está en una intersección 
      */
     @Override
     public boolean intersects(double x, double y, double w, double h)
@@ -251,7 +268,7 @@ public class Shape implements java.awt.Shape, Cloneable, IShape
     /**
      * Dice si el punto está en una interseccion
      * @param r
-     * @return 
+     * @return true si el punto está en una intersección
      */
     @Override
     public boolean intersects(Rectangle2D r)
@@ -274,7 +291,7 @@ public class Shape implements java.awt.Shape, Cloneable, IShape
     /**
      * OBtiene el objeto pathIterator
      * @param at
-     * @return 
+     * @return pathIterator
      */
     @Override
     public PathIterator getPathIterator(AffineTransform at)
@@ -286,7 +303,7 @@ public class Shape implements java.awt.Shape, Cloneable, IShape
      * Obtiene el objeto pathIterator
      * @param at
      * @param flatness
-     * @return 
+     * @return pathIterator
      */
     @Override
     public PathIterator getPathIterator(AffineTransform at, double flatness)
